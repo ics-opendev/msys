@@ -1,0 +1,357 @@
+<div class="shop-information_big">
+  <div style="float:left;">
+    <div style="font-size:24px;font-weight:bold;color:#FFFFFF;" id="customer-name"><%= req.user.name %></div>
+    <div style="font-size:18px;color:#FFFFFF;margin-top:-3px;" id="current-local-time"></div>
+  </div>
+  <input type="hidden" id="companyId" value="<%= req.user.companyId %>"></input>
+  <input type="hidden" id="userId" value="<%= req.user.userId %>"></input>
+  <input type="hidden" id="mobile" value=""></input>
+</div>
+
+<div id="xform" style="margin-top:5px;display: ">
+
+  <!-- 新規受付　枠 =========================-->
+  <div id="customer_btn" class="col-sm-12">
+    <div id="new-reception">
+      <div class="new-reception-box">
+        <div id="customer-project-create">
+      	  <div id="new-reception-ja" style="height:100px;">
+      		<img class="wh-auto ja-img" style="padding-top:20px;" src="/linker/css/images/new-reception-ja.png">
+      	  </div>
+      	</div>
+      </div>
+    </div>
+  </div>
+  <!-- 新規受付　枠 End ======================-->
+  
+  <div style="clear:both;margin-bottom:10px;"></div>
+  
+  <!-- お客様状況 =========================-->
+  <div class="user-now">
+  	<div class="user-bar_big">
+  	  <span style="font-size:24px;">案件登録状況</span>
+  	  <img style="float:right;" src="/linker/css/images/road.png" onclick='javascript:ms.customer.initCustomer();return void(0);'>
+  	  <span class="reload_big">再表示</span>
+  	</div>
+  </div>
+  <!-- お客様状況 End ======================-->
+  
+  <div class="col-sm-12 col-xs-12 well well-sm box_cus ratio-1_3" id="pane-customer-area" style="height:580px;">
+    <div class="panel-group inner_rea" id="all_customer">
+    </div>
+  </div>
+  
+  <div style="clear:both;"></div>
+  
+</div>
+
+<!-- 新規受付画面（日） =========================-->
+<div id="yform" style="display: none">
+  <div id="inputform" style="display: ">
+    <div style="font-size:22px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:pink">
+      <!--<span id="questionNo"></span>/<span id="questionTotal"></span>　-->
+      <!--<span class="errmsg" id="lastMessage"></span>-->
+      現在<span id="questionNo"></span>問目の質問です。あと<span id="questionRe" class="errmsg"></span>問
+  	</div>
+    
+    <!-- 漢字入力欄 =========================-->
+    <div id="enterform" style="display: none">
+      <div id="enter_question" style="font-size:22px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:#ffecce">
+  		</div>
+  		
+  		<div style="clear:both;margin-bottom:5px;"></div>
+  		
+  		<div class="input-container">
+  			<TEXTAREA id="enter-answer" cols="30" rows="5" style="font-size:38px;width:80%;float:left;"></TEXTAREA>
+  		</div>
+  		<div style="margin-top:3px;">
+  			<!-- clearボタン =========================-->
+  			<div class="clear-button_big" id="btn_enter_del">
+  				clear
+  			</div>
+  			<!-- clearボタン End ======================-->
+  		</div>
+  		
+  		<div style="clear:both;"></div>
+    </div>
+    <!-- 漢字入力欄 End ======================-->
+    
+    <!-- 数値入力欄 =========================-->
+    <div id="touchform" style="display: none">
+      <div id="touch_question" style="font-size:22px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:#ffecce">
+  		</div>
+  		
+  		<div style="clear:both;margin-bottom:5px;"></div>
+  		
+  		<div style="margin-top:5px;">
+  			<div class="input-container">
+  				<input type="text" class="num" id="touch-answer" maxlength="20" style="font-size:38px;width:80%;float:left;height:48px;" readOnly/>
+  			</div>
+  			
+  			<!-- clearボタン =========================-->
+  			<div class="clear-button_big" id="btn_touch_del">
+  				clear
+  			</div>
+  			<!-- clearボタン End ======================-->
+  		</div>
+  		
+  		<div style="clear:both;margin-bottom:5px;"></div>
+  		
+  		<div style="font-size:22px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:#ffecce">
+  			下のタッチパネルよりご入力ください。
+  		</div>
+      
+      <!-- 数字タッチパネル =========================-->
+  		<div class="line-container"></div>
+  		<div class="number-base_big">
+  			<div class="number_x number_big">1</div>
+  		</div>
+  		<div class="number-base_big">
+  			<div class="number_x number_big">2</div>
+  		</div>
+  		<div class="number-base_big">
+  			<div class="number_x number_big">3</div>
+  		</div>
+  		<div style="clear:both;"></div>
+  		<div class="number-base_big">
+  			<div class="number_x number_big number-second">4</div>
+  		</div>
+  		<div class="number-base_big">
+  			<div class="number_x number_big number-second">5</div>
+  		</div>
+  		<div class="number-base_big">
+  			<div class="number_x number_big number-second">6</div>
+  		</div>
+  		<div style="clear:both;"></div>
+  		<div class="number-base_big">
+  			<div class="number_x number_big">7</div>
+  		</div>
+  		<div class="number-base_big">
+  			<div class="number_x number_big">8</div>
+  		</div>
+  		<div class="number-base_big">
+  			<div class="number_x number_big">9</div>
+  		</div>
+  		<div style="clear:both;"></div>
+  		<div class="number-base_big" style="margin-left:33%;">
+  			<div class="number_x number_big number-second">0</div>
+  		</div>
+  		<!-- 数字タッチパネル End ======================-->
+
+      <div style="clear:both;"></div>
+    </div>
+    <!-- 数値入力欄 End ======================-->
+    
+    <!-- 日付入力欄 =========================-->
+    <div id="dateform" style="display: none">
+      <div id="date_question" style="font-size:22px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:#ffecce">
+  		</div>
+  		
+  		<div style="clear:both;margin-bottom:5px;"></div>
+  		
+  		<div class="input-container">
+  			<input type="text" id="date-answer" maxlength="10" style="font-size:38px;width:50%;float:left;height:48px;" readOnly/>
+  		</div>
+  		
+  		<div style="clear:both;"></div>
+    </div>
+    <!-- 日付入力欄 End ======================-->
+    
+    <!-- チェックボックス入力欄 =========================-->
+    <div id="checkform" style="display: ">
+      <div id="check_question" style="font-size:22px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:#ffecce">
+  		</div>
+  		
+  		<div style="clear:both;margin-bottom:5px;"></div>
+
+    	<div id="check_table">
+    	  <div id="check_templete1" style="float:left;width:100%;display: none">
+      		<label style="width:60%;">
+      		  <input type="checkbox" id="chkname1" class="option-radio_big" value=""/>
+      		  <span class="option-tag_big" id="check_name1"></span>
+      		</label>
+      		<span id="quantityform1" style="display: ">
+      		  <span class="input-class_big2">数量：</span>
+      		  <input type="text" class="num" id="chkquantity1" maxlength="10" style="font-size:38px;width:20%;height:48px;" readOnly/>
+      		</span>
+      	</div>
+      	<div id="check_templete2" style="float:left;width:100%;display: none">
+      		<label style="width:60%;">
+      		  <input type="checkbox" id="chkname2" class="option-radio_big" value=""/>
+      		  <span class="option-tag_big" id="check_name2"></span>
+      		</label>
+      		<span id="quantityform2" style="display: ">
+      		  <span class="input-class_big2">数量：</span>
+      		  <input type="text" class="num" id="chkquantity2" maxlength="10" style="font-size:38px;width:20%;height:48px;" readOnly/>
+      		</span>
+      	</div>
+      	<div id="check_templete3" style="float:left;width:100%;display: none">
+      		<label style="width:60%;">
+      		  <input type="checkbox" id="chkname3" class="option-radio_big" value=""/>
+      		  <span class="option-tag_big" id="check_name3"></span>
+      		</label>
+      		<span id="quantityform3" style="display: ">
+      		  <span class="input-class_big2">数量：</span>
+      		  <input type="text" class="num" id="chkquantity3" maxlength="10" style="font-size:38px;width:20%;height:48px;" readOnly/>
+      		</span>
+      	</div>
+      	<div id="check_templete4" style="float:left;width:100%;display: none">
+      		<label style="width:60%;">
+      		  <input type="checkbox" id="chkname4" class="option-radio_big" value=""/>
+      		  <span class="option-tag_big" id="check_name4"></span>
+      		</label>
+      		<span id="quantityform4" style="display: ">
+      		  <span class="input-class_big2">数量：</span>
+      		  <input type="text" class="num" id="chkquantity4" maxlength="10" style="font-size:38px;width:20%;height:48px;" readOnly/>
+      		</span>
+      	</div>
+      	<div id="check_templete5" style="float:left;width:100%;display: none">
+      		<label style="width:60%;">
+      		  <input type="checkbox" id="chkname5" class="option-radio_big" value=""/>
+      		  <span class="option-tag_big" id="check_name5"></span>
+      		</label>
+      		<span id="quantityform5" style="display: ">
+      		  <span class="input-class_big2">数量：</span>
+      		  <input type="text" class="num" id="chkquantity5" maxlength="10" style="font-size:38px;width:20%;height:48px;" readOnly/>
+      		</span>
+      	</div>
+    	</div>
+  		
+      <div style="clear:both;"></div>
+    </div>
+    <!-- チェックボックス入力欄 End ======================-->
+    
+    <!-- ラジオボタン入力欄 =========================-->
+    <div id="radioform" style="display: ">
+      <div id="radio_question" style="font-size:22px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:#ffecce">
+  		</div>
+  		
+  		<div style="clear:both;margin-bottom:5px;"></div>
+      
+      <div id="radio_table">
+        <div id="radio_templete1" style="float:left;width:100%;display: none">
+          <label>
+        		<input class="option-radio_big" id="rdoname1" style="margin:-4px 2px 0 5px;" type="radio" name="rdo" value=""/>
+        		<span class="option-tag_big" id="radio_name1"></span>
+        	</label>
+        </div>
+        <div id="radio_templete2" style="float:left;width:100%;display: none">
+          <label>
+        		<input class="option-radio_big" id="rdoname2" style="margin:-4px 2px 0 5px;" type="radio" name="rdo" value=""/>
+        		<span class="option-tag_big" id="radio_name2"></span>
+        	</label>
+        </div>
+        <div id="radio_templete3" style="float:left;width:100%;display: none">
+          <label>
+        		<input class="option-radio_big" id="rdoname3" style="margin:-4px 2px 0 5px;" type="radio" name="rdo" value=""/>
+        		<span class="option-tag_big" id="radio_name3"></span>
+        	</label>
+        </div>
+        <div id="radio_templete4" style="float:left;width:100%;display: none">
+          <label>
+        		<input class="option-radio_big" id="rdoname4" style="margin:-4px 2px 0 5px;" type="radio" name="rdo" value=""/>
+        		<span class="option-tag_big" id="radio_name4"></span>
+        	</label>
+        </div>
+        <div id="radio_templete5" style="float:left;width:100%;display: none">
+          <label>
+        		<input class="option-radio_big" id="rdoname5" style="margin:-4px 2px 0 5px;" type="radio" name="rdo" value=""/>
+        		<span class="option-tag_big" id="radio_name5"></span>
+        	</label>
+        </div>
+      </div>
+      
+      <input type="hidden" id="radio_nextNo"></input>
+      <input type="hidden" id="radio_price"></input>
+    	
+    	<div style="clear:both;"></div>
+    </div>
+    <!-- ラジオボタン入力欄 End ======================-->
+  </div>
+  <div id="inputform2">
+    <div id="quantityform" style="margin-top:20px;display: ">
+  		<div class="input-container">
+  			<p class="input-class_big">数量：</p>
+  			<input type="text" class="num" id="quantity" maxlength="10" style="font-size:38px;width:30%;float:left;height:48px;" readOnly/>
+  		</div>
+  	</div>
+  	
+  	<div style="clear:both;margin-bottom:5px;"></div>
+  	
+    <button id="btn_customer_cancel" type="button" class="btn btn-default enter-nosbtn_big">Cancel</button>
+  	<button id="btn_customer_back" type="button" class="btn btn-default enter-nosbtn_big" style="display: none">前へ</button>
+  	<input type="hidden" id="backNo"></input>
+  	<button id="btn_customer_next" type="button" class="btn btn-default enter-nosbtn_big" style="float:right;display: none">次へ</button>
+  	<button id="btn_customer_create" type="button" class="btn btn-default enter-nosbtn_big" style="float:right;display: none">OK</button>
+  </div>
+</div>
+<!-- 新規受付画面（日） End ======================-->
+
+<div style="clear:both;margin-top:5px;"></div>
+
+<div id="detailform" style="display: none">
+  <select id="status">
+    <option value="">商談中</option>
+    <option value="1">受注確定</option>
+    <option value="2">保留</option>
+    <option value="3">失注</option>
+  </select>
+  <input type="button" value="ステータス変更" id="btn_status" class="BTN_BLUE" style="width:120px;"/>　　
+  <input type="button" value="見積依頼" id="btn_request" class="BTN_BLUE" style="background-color:red;width:90px;"/>　　
+  <input type="button" value="案件削除" id="btn_delete" class="BTN_BLUE" style="background-color:gray;width:90px;"/>　　
+  <input type="button" value="メール送信" id="btn_mail" class="BTN_BLUE" style="width:100px;"/>　　
+  <input type="button" value="戻る" id="detail-back" class="BTN_BLUE" style="background-color:gray;width:90px;"/>
+  
+  <div style="clear:both;margin-bottom:10px;"></div>
+  
+  <div style="font-size:22px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:pink">
+    試算総額：<span id="detail_price"></span>円
+  </div>
+  <table class="table table-bordered" id="msys_customer_table_detail">
+    <tr class="TBL_BLUE">
+      <th nowrap>No</th>
+      <th nowrap>質問内容</th>
+      <th nowrap>回答</th>
+      <th nowrap>数量</th>
+      <!--<th nowrap>小計</th>-->
+    </tr>
+    <tr id="detail_template" style="display: none">
+      <td>
+        <span class="detail_questionNo"></span>
+      </td>
+      <td>
+        <span class="detail_question"></span>
+      </td>
+      <td>
+        <span class="detail_answer"></span>
+      </td>
+      <td>
+        <span class="detail_quantity"></span>
+      </td>
+      <!--<td>-->
+      <!--  <span class="detail_subTotal"></span>-->
+      <!--</td>-->
+    </tr>
+  </table>
+</div>
+
+<div style="clear:both;"></div>
+
+<div id="zform" style="display: ">
+  <div class="col-sm-4 col-xs-4">
+    <div id="customer-back" class="back-menu">戻る</div>
+  </div>
+</div>
+<script>
+  $(function(){
+    // prototypeに保持
+    KsWidgetTmpl.prototype.companyId = $('#companyId').val();
+    KsWidgetTmpl.prototype.userId = $('#userId').val();
+    KsWidgetTmpl.prototype.firstLoad_customer = false;
+    
+    if(!_top_msys_customer_load){
+      _top_msys_customer_load=true;
+      ms.customer.initCustomer();
+    }
+  });
+</script>

@@ -1,0 +1,325 @@
+<form action="/logout">
+<div class="shop-information">
+  <div style="float:left;">
+	<div style="font-size:16px;font-weight:bold;color:#FFFFFF;"><%= req.user.name %></div>
+	<div style="font-size:12px;color:#FFFFFF;margin-top:-3px;" id="current-local-time"></div>
+  </div>
+  <!-- ログアウト =========================-->
+  <div style="float:right;">
+	<img style="height:20px;margin:10px 0 10px 0;" src="/linker/css/images/logout-button.png" onclick="document.forms[0].submit();">
+  </div>
+  <!-- ログアウト End ======================-->
+  <input type="hidden" id="companyId" value="<%= req.user.companyId %>"></input>
+  <input type="hidden" id="userId" value="<%= req.user.userId %>"></input>
+  <input type="hidden" id="mobile" value="1"></input>
+</div>
+</form>
+
+<div id="xform" style="margin-top:5px;display: ">
+  <!-- 新規受付　枠 =========================-->
+  <div id="new-reception">
+    <div class="new-reception-box">
+	  <div id="new-reception-ja">
+		<span id="mobile_btn">
+		  <img id="mobile-project-create" class="wh-auto en-img" src="/linker/css/images/new-reception-ja.png">
+		</span>
+	  </div>
+	</div>
+  </div>
+  <!-- 新規受付　枠 End ======================-->
+  
+  <div style="clear:both;margin-bottom:10px;"></div>
+  
+  <!-- お客様状況 =========================-->
+  <div class="user-now">
+	<div class="user-bar">
+	  案件登録状況
+	  <img id='mobile-refresh' class="user-button" style="float:right;" src="/linker/css/images/road.png" onclick='javascript:ms.mobile.initMobile();return void(0);'>
+	</div>
+  </div>
+  
+  <div class="col-sm-12 col-xs-12 well well-sm box_cus2 ratio-1_3" id="mobile-pane-customer-area">
+    <div class="panel-group inner_rea" id="mobile_all_customer" style="height: 100%;">
+    </div>
+  </div>
+  <!-- お客様状況 End ======================-->
+  
+  <div style="clear:both;"></div>
+</div>
+
+<!-- 新規受付画面（日） =========================-->
+<div id="yform" style="display: none">
+  <div id="inputform" style="display: ">
+    <div style="font-size:16px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:pink">
+      現在<span id="questionNo"></span>問目の質問です。あと<span id="questionRe" class="errmsg"></span>問
+  	</div>
+  	
+  	<!-- 漢字入力欄 =========================-->
+    <div id="enterform" style="display: none">
+      <div id="enter_question" style="font-size:16px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:#ffecce">
+  	  </div>
+  	  <div style="clear:both;margin-bottom:5px;"></div>
+  	  <div class="input-container">
+  	    <TEXTAREA id="enter-answer" cols="30" rows="5" style="font-size:18px;width:80%;float:left;"></TEXTAREA>
+  	  </div>
+  	  <div style="margin-top:3px;">
+  		<!-- clearボタン =========================-->
+  		<div class="clear-button" id="btn_enter_del">
+  		  clear
+  		</div>
+  		<!-- clearボタン End ======================-->
+  	  </div>
+  	  <div style="clear:both;"></div>
+    </div>
+    <!-- 漢字入力欄 End ======================-->
+    
+    <!-- 数値入力欄 =========================-->
+    <div id="touchform" style="display: none">
+      <div id="touch_question" style="font-size:16px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:#ffecce">
+  	  </div>
+  	  <div style="clear:both;margin-bottom:5px;"></div>
+  	  <div style="margin-top:5px;">
+  		<div class="input-container">
+  		  <input type="text" class="num" id="touch-answer" maxlength="20" style="font-size:18px;width:80%;float:left;height:25px;" readOnly/>
+  		</div>
+  		<!-- clearボタン =========================-->
+  		<div class="clear-button" id="btn_touch_del">
+  		  clear
+  		</div>
+  		<!-- clearボタン End ======================-->
+  	  </div>
+  	  <div style="clear:both;margin-bottom:5px;"></div>
+  	  <div style="font-size:16px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:#ffecce">
+  		下のタッチパネルよりご入力ください。
+  	  </div>
+  	  <!-- 数字タッチパネル =========================-->
+      <div class="line-container"></div>
+      <div class="number-base">
+        <div class="number_x number">1</div>
+      </div>
+      <div class="number-base">
+        <div class="number_x number">2</div>
+      </div>
+      <div class="number-base">
+        <div class="number_x number">3</div>
+      </div>
+      <div class="number-base">
+        <div class="number_x number">4</div>
+      </div>
+      <div class="number-base">
+        <div class="number_x number">5</div>
+      </div>
+      <div class="line-container"></div>
+      <div class="number-base">
+        <div class="number_x number number-second">6</div>
+      </div>
+      <div class="number-base">
+        <div class="number_x number number-second">7</div>
+      </div>
+      <div class="number-base">
+        <div class="number_x number number-second">8</div>
+      </div>
+      <div class="number-base">
+        <div class="number_x number number-second">9</div>
+      </div>
+      <div class="number-base">
+        <div class="number_x number number-second">0</div>
+      </div>
+      <!-- 数字タッチパネル End ======================-->
+      <div style="clear:both;"></div>
+    </div>
+    <!-- 数値入力欄 End ======================-->
+    
+    <!-- 日付入力欄 =========================-->
+    <div id="dateform" style="display: none">
+      <div id="date_question" style="font-size:16px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:#ffecce">
+  	  </div>
+  	  <div style="clear:both;margin-bottom:5px;"></div>
+  	  <div class="input-container">
+  	    <input type="text" id="date-answer" maxlength="10" style="font-size:18px;width:50%;float:left;height:25px;" readOnly/>
+  	  </div>
+  	  <div style="clear:both;"></div>
+    </div>
+    <!-- 日付入力欄 End ======================-->
+    
+    <!-- チェックボックス入力欄 =========================-->
+    <div id="checkform" style="display: ">
+      <div id="check_question" style="font-size:16px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:#ffecce">
+  	  </div>
+  	  <div style="clear:both;margin-bottom:5px;"></div>
+      <div id="check_table">
+        <div id="check_templete1" style="float:left;width:100%;display: none">
+          <label style="width:50%;">
+    	    <input type="checkbox" id="chkname1" style="margin:-4px 2px 0 5px;" class="option-radio" value=""/>
+    	    <span class="option-tag" id="check_name1"></span>
+    	  </label>
+      	  <span id="quantityform1" style="display: ">
+      	    <span class="input-class2">数量：</span>
+      	    <input type="text" class="num" id="chkquantity1" maxlength="10" style="font-size:18px;width:20%;height:25px;" readOnly/>
+      	  </span>
+      	</div>
+      	<div id="check_templete2" style="float:left;width:100%;display: none">
+      	  <label style="width:50%;">
+      	    <input type="checkbox" id="chkname2" style="margin:-4px 2px 0 5px;" class="option-radio" value=""/>
+      	    <span class="option-tag" id="check_name2"></span>
+      	  </label>
+      	  <span id="quantityform2" style="display: ">
+      	    <span class="input-class2">数量：</span>
+      	    <input type="text" class="num" id="chkquantity2" maxlength="10" style="font-size:18px;width:20%;height:25px;" readOnly/>
+      	  </span>
+      	</div>
+      	<div id="check_templete3" style="float:left;width:100%;display: none">
+      	  <label style="width:50%;">
+      	    <input type="checkbox" id="chkname3" style="margin:-4px 2px 0 5px;" class="option-radio" value=""/>
+      	    <span class="option-tag" id="check_name3"></span>
+      	  </label>
+      	  <span id="quantityform3" style="display: ">
+      	    <span class="input-class2">数量：</span>
+      	    <input type="text" class="num" id="chkquantity3" maxlength="10" style="font-size:18px;width:20%;height:25px;" readOnly/>
+      	  </span>
+      	</div>
+      	<div id="check_templete4" style="float:left;width:100%;display: none">
+      	  <label style="width:50%;">
+      	    <input type="checkbox" id="chkname4" style="margin:-4px 2px 0 5px;" class="option-radio" value=""/>
+      	    <span class="option-tag" id="check_name4"></span>
+      	  </label>
+      	  <span id="quantityform4" style="display: ">
+      	    <span class="input-class2">数量：</span>
+      	    <input type="text" class="num" id="chkquantity4" maxlength="10" style="font-size:18px;width:20%;height:25px;" readOnly/>
+      	  </span>
+      	</div>
+      	<div id="check_templete5" style="float:left;width:100%;display: none">
+      	  <label style="width:50%;">
+      	    <input type="checkbox" id="chkname5" style="margin:-4px 2px 0 5px;" class="option-radio" value=""/>
+      	    <span class="option-tag" id="check_name5"></span>
+      	  </label>
+      	  <span id="quantityform5" style="display: ">
+      	    <span class="input-class2">数量：</span>
+      	    <input type="text" class="num" id="chkquantity5" maxlength="10" style="font-size:18px;width:20%;height:25px;" readOnly/>
+      	  </span>
+      	</div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+    <!-- チェックボックス入力欄 End ======================-->
+    
+    <!-- ラジオボタン入力欄 =========================-->
+    <div id="radioform" style="display: ">
+      <div id="radio_question" style="font-size:16px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:#ffecce">
+  		</div>
+  		<div style="clear:both;margin-bottom:5px;"></div>
+      <div id="radio_table">
+        <div id="radio_templete1" style="float:left;width:100%;display: none">
+          <label>
+        		<input class="option-radio" id="rdoname1" style="margin:-4px 2px 0 5px;" type="radio" name="rdo" value=""/>
+        		<span class="option-tag" id="radio_name1"></span>
+        	</label>
+        </div>
+        <div id="radio_templete2" style="float:left;width:100%;display: none">
+          <label>
+        		<input class="option-radio" id="rdoname2" style="margin:-4px 2px 0 5px;" type="radio" name="rdo" value=""/>
+        		<span class="option-tag" id="radio_name2"></span>
+        	</label>
+        </div>
+        <div id="radio_templete3" style="float:left;width:100%;display: none">
+          <label>
+        		<input class="option-radio" id="rdoname3" style="margin:-4px 2px 0 5px;" type="radio" name="rdo" value=""/>
+        		<span class="option-tag" id="radio_name3"></span>
+        	</label>
+        </div>
+        <div id="radio_templete4" style="float:left;width:100%;display: none">
+          <label>
+        		<input class="option-radio" id="rdoname4" style="margin:-4px 2px 0 5px;" type="radio" name="rdo" value=""/>
+        		<span class="option-tag" id="radio_name4"></span>
+        	</label>
+        </div>
+        <div id="radio_templete5" style="float:left;width:100%;display: none">
+          <label>
+        		<input class="option-radio" id="rdoname5" style="margin:-4px 2px 0 5px;" type="radio" name="rdo" value=""/>
+        		<span class="option-tag" id="radio_name5"></span>
+        	</label>
+        </div>
+      </div>
+      <input type="hidden" id="radio_nextNo"></input>
+      <input type="hidden" id="radio_price"></input>
+    	<div style="clear:both;"></div>
+    </div>
+    <!-- ラジオボタン入力欄 End ======================-->
+    
+  </div>
+  <div id="inputform2">
+    <div id="quantityform" style="margin-top:20px;display: ">
+  		<div class="input-container">
+  			<p class="input-class">数量：</p>
+  			<input type="text" class="num" id="quantity" maxlength="10" style="font-size:18px;width:30%;float:left;height:25px;" readOnly/>
+  		</div>
+  	</div>
+  	
+  	<div style="clear:both;margin-bottom:5px;"></div>
+  	
+    <button id="btn_customer_cancel" type="button" class="btn btn-default enter-nosbtn_mob">Cancel</button>
+  	<button id="btn_customer_back" type="button" class="btn btn-default enter-nosbtn_mob" style="display: none">前へ</button>
+  	<input type="hidden" id="backNo"></input>
+  	<button id="btn_customer_next" type="button" class="btn btn-default enter-nosbtn_mob" style="float:right;display: none">次へ</button>
+  	<button id="btn_customer_create" type="button" class="btn btn-default enter-nosbtn_mob" style="float:right;display: none">OK</button>
+  </div>
+</div>
+<!-- 新規受付画面（日） End ======================-->
+
+<div style="clear:both;"></div>
+
+<div id="detailform" style="display: none">
+  <select id="status">
+    <option value="">商談中</option>
+    <option value="1">受注確定</option>
+    <option value="2">保留</option>
+    <option value="3">失注</option>
+  </select>
+  <input type="button" value="変更" id="btn_status" class="BTN_BLUE"/>　
+  <input type="button" value="見積依頼" id="btn_request" class="BTN_BLUE" style="background-color:red;width:80px;"/>　
+  <input type="button" value="案件削除" id="btn_delete" class="BTN_BLUE" style="background-color:gray;width:80px;"/>
+  
+  <div style="clear:both;margin-bottom:10px;"></div>
+  
+  <div style="font-size:16px;width:98%;margin:0 1% 0 1%;padding:0 5px;background-color:pink">
+    試算総額：<span id="detail_price"></span>円
+  </div>
+  <table class="table table-bordered" id="msys_customer_table_detail">
+    <tr class="TBL_BLUE">
+      <th nowrap>No</th>
+      <th nowrap>質問内容</th>
+      <th nowrap>回答</th>
+      <th nowrap>数量</th>
+    </tr>
+    <tr id="detail_template" style="display: none">
+      <td>
+        <span class="detail_questionNo"></span>
+      </td>
+      <td>
+        <span class="detail_question"></span>
+      </td>
+      <td>
+        <span class="detail_answer"></span>
+      </td>
+      <td>
+        <span class="detail_quantity"></span>
+      </td>
+    </tr>
+  </table>
+  <div class="col-sm-4 col-xs-4">
+    <div id="detail-back" class="back-menu">戻る</div>
+  </div>
+</div>
+<script>
+  $(function(){
+    // prototypeに保持
+    KsWidgetTmpl.prototype.companyId = $('#companyId').val();
+    KsWidgetTmpl.prototype.userId = $('#userId').val();
+    KsWidgetTmpl.prototype.firstLoad_mobile = false;
+    
+    if(!_top_msys_mobile_load){
+      _top_msys_mobile_load=true;
+      ms.mobile.initMobile();
+    }
+  });
+</script>

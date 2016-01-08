@@ -1,0 +1,130 @@
+<form action="/logout">
+<div class="shop-information_big">
+  <div style="float:left;">
+    <div style="font-size:24px;font-weight:bold;color:#FFFFFF;" id="customer-name"><%= req.user.name %></div>
+    <div style="font-size:18px;color:#FFFFFF;margin-top:-3px;" id="current-local-time"></div>
+  </div>
+  <!-- ログアウト =========================-->
+  <div style="float:right;">
+    <img style="height:20px;margin:10px 0 10px 0;" src="/linker/css/images/logout-button.png" onclick="document.forms[0].submit();">
+  </div>
+  <!-- ログアウト End ======================-->
+  <input type="hidden" id="companyId" value="<%= req.user.companyId %>"></input>
+  <input type="hidden" id="userId" value="<%= req.user.userId %>"></input>
+  <input type="hidden" id="admin" value="<%= req.user.admin %>"></input>
+</div>
+</form>
+
+<div style="clear:both;margin-bottom:10px;"></div>
+
+<select id="companySel">
+  <option value="">企業を選択</option>
+</select>
+
+<div id="all_master" class="inner">
+  <table class="table table-bordered" id="msys_management_table_project">
+    <tr class="TBL_BLUE">
+      <th>名前</th>
+      <th>メールアドレス</th>
+      <th>電話番号</th>
+      <th>案件名</th>
+      <th>試算総額</th>
+      <th>見積依頼状況</th>
+    </tr>
+    <tr id="project_template" style="display: none">
+      <td><span class="name"></span></td>
+      <td><span class="mail"></span></td>
+      <td><span class="tel"></span></td>
+      <td><span class="projectName"></span></td>
+      <td class="num"><span class="totalPrice"></span></td>
+      <td><span class="request"></span></td>
+    </tr>
+  </table>
+</div>
+
+<div style="clear:both;margin-bottom:10px;"></div>
+
+<div id="project-back" class="back-menu">戻る</div>
+
+<script>
+  $(function(){
+    if($('#admin').val() != '1'){
+      location.href = "/msys/main";
+    } else {
+      if(!_top_msys_project_load){
+        _top_msys_project_load=true;
+        ms.project.initProject();
+      }
+    }
+  });
+</script>
+
+<!--<div class="col-sm-7 col-xs-7 well well-sm box_cus ratio-1_3" id="pane-customer-area">-->
+<!--  <div class="user-bar">-->
+<!--    商談中案件-->
+<!--    <img class="user-button" style="float:right;" src="/linker/css/images/road.png" onclick='javascript:alert("再読込");return void(0);'>-->
+<!--  </div>-->
+<!--  <div class="panel-group inner_pre" id="all_staff">-->
+<!--    <div style="padding:2px 1% 0px 1%;">-->
+<!--      <div class="user-tag">-->
+<!--        <div class="customer-link staff" style="height:25px;padding-top:5px;">-->
+<!--          <div class="project-no customer-sp">1　</div>-->
+<!--          <div class="project-name customer-name-sp">あいうえお産業</div>-->
+<!--		    </div>-->
+<!--		    <div style="height:25px;padding-bottom:5px;float:right;">-->
+<!--		      <div class="project-price people-sp">￥7,000,000</div>-->
+<!--	      </div>-->
+<!--	    </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<div class="col-sm-5 col-xs-5">-->
+<!--  <div class="well well-sm box_abs ratio-1_3" id="pane-enter-area">-->
+<!--    <p class="user-bar2">案件決定</p>-->
+<!--    <div class="panel-group inner_rea" id="all_enter">-->
+<!--      <div style="padding:2px 1% 0px 1%;">-->
+<!--        <div class="user-tag">-->
+<!--          <div class="customer-link staff" style="height:25px;padding-top:5px;">-->
+<!--            <div class="project-no customer-sp">1　</div>-->
+<!--            <div class="project-name customer-name-sp">あいうえお産業</div>-->
+<!--		      </div>-->
+<!--		      <div style="height:25px;padding-bottom:5px;float:right;">-->
+<!--		        <div class="project-price people-sp">￥7,000,000</div>-->
+<!--	        </div>-->
+<!--	      </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="well well-sm box_abs ratio-1_3" id="pane-absence-area">-->
+<!--    <p class="user-bar3">保留</p>-->
+<!--    <div class="panel-group inner_rea" id="all_absence">-->
+<!--      <div style="padding:2px 1% 0px 1%;">-->
+<!--        <div class="user-tag">-->
+<!--          <div class="customer-link staff" style="height:25px;padding-top:5px;">-->
+<!--            <div class="project-no customer-sp">1　</div>-->
+<!--            <div class="project-name customer-name-sp">あいうえお産業</div>-->
+<!--		      </div>-->
+<!--		      <div style="height:25px;padding-bottom:5px;float:right;">-->
+<!--		        <div class="project-price people-sp">￥7,000,000</div>-->
+<!--	        </div>-->
+<!--	      </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="well well-sm box_another ratio-1_3" id="pane-cancel-area">-->
+<!--    <p class="user-bar3">キャンセル</p>-->
+<!--    <div class="panel-group inner_another" id="all_cancel">-->
+<!--      <div style="padding:2px 1% 0px 1%;">-->
+<!--        <div class="user-tag">-->
+<!--          <div class="customer-link staff" style="height:25px;padding-top:5px;">-->
+<!--            <div class="project-no customer-sp">1　</div>-->
+<!--            <div class="project-name customer-name-sp">あいうえお産業</div>-->
+<!--		      </div>-->
+<!--		      <div style="height:25px;padding-bottom:5px;float:right;">-->
+<!--		        <div class="project-price people-sp">￥7,000,000</div>-->
+<!--	        </div>-->
+<!--	      </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

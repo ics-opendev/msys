@@ -1,0 +1,72 @@
+<form action="/login" method="post">
+  <div class="login" id="loginform" style="display: ">
+    <div style="text-align:center;padding-top:5%;">
+      <div class="login-subtitle">Taskalcloud</div>
+      <div class="login-maintitle">自動試算システム</div>
+      
+      <div class="login-container">
+        <div class="text20">メールアドレス</div>
+        <input type="text" name="username" id="username" class="login-inputter text20" placeholder="Input Login ID" value="" />
+        <div class="text20" style="margin-top:10px;">パスワード</div>
+        <input type="password" name="password" id="password" class="login-inputter text20" placeholder="Input Login Password" value="" />
+        <div style="clear:both;"></div>
+        <div class="text20" style="width:100%;border:1px solid #DBDBDB;margin-top:20px;line-height:10px;">
+          <label style="margin-bottom:0;text-align:center;padding-top:2px;">
+            ログイン情報を保持する<input type="checkbox" id="c_loginsave" class="checkbox" style="height:26px;margin-top:0px;color:#FF0000;" value="1"/>
+          </label>
+        </div>
+      </div>
+      <div style="clear:both;"></div>
+      <a id="btn_forget" class="toggle" data-toggle="collapse" href="">
+        ※パスワードを忘れた方はこちら
+      </a>
+    </div>
+    
+    <div id="login-button" style="margin-top:20%;margin-bottom:1%;">
+      <div id="second" style="font-size: 4rem; padding-top: 10px;">
+        <img style="margin-bottom: 5px;height:40px;" src="/linker/css/images/login-illust.png">ログイン
+      </div>
+    </div>
+    
+    <input type="hidden" name="loginsave" id="loginsave" value="" />
+    <input type="hidden" name="loginplace" id="loginplace" value="" />
+  </div>
+</form>
+
+<!-- TODO:パスワード忘れ問い合わせフォーム どんな仕様にするか検討中 -->
+<div id="forgetform" style="display: none">
+  <div style="text-align:center;padding-top:10%;">
+    <div class="login-subtitle">お問い合わせフォーム</div>
+    <div class="errmsg">■ログインID/パスワードをお忘れの場合、以下の承認フォームを入力し、パスワードを再設定してください。</div>
+    <div class="login-container">
+      <div class="text20">登録メールアドレス</div>
+      <input type="text" id="mail" class="login-inputter text20" value="" />
+      <div class="text20" style="margin-top:20px;">認証用年月日（8桁入力）</div>
+      <input type="text" id="date" class="login-inputter text20" value="" />
+    </div>
+    <br>
+    <input type="button" value="戻る" id="btn_back" class="TBL_BLUE"/>　
+    <input type="button" value="お問い合わせ" id="btn_contact" class="TBL_BLUE"/>
+  </div>
+  <div class="col-sm-12" id="contactform" style="display: none">
+    <span id="forget_message">0</span>件該当しました
+    <table id="msys_forget_table_user">
+      <tr id="forget_user_template" style="display: none">
+        <td>・
+          <a class="forget_userName link"></a>
+          <span class='userDelete label-danger label'>削除</span>
+          <br>
+          （ログインID：<span class="forget_userId"></span>）
+          <input type="hidden" class="forget_id" value=""></input>
+        </td>
+      </tr>
+    </table>
+    <input type="hidden" id="master-tenpo-name" value=""></input>
+    <input type="hidden" id="master-tenpo-id" value=""></input>
+  </div>
+</div>
+<script>
+  $(function(){
+    ms.login.initLogin();
+  });
+</script>

@@ -1,0 +1,199 @@
+<div class="shop-information_big">
+  <div style="float:left;">
+    <div style="font-size:24px;font-weight:bold;color:#FFFFFF;" id="customer-name"><%= req.user.name %></div>
+    <div style="font-size:18px;color:#FFFFFF;margin-top:-3px;" id="current-local-time"></div>
+  </div>
+  <input type="hidden" id="companyId" value="<%= req.user.companyId %>"></input>
+  <input type="hidden" id="userId" value="<%= req.user.userId %>"></input>
+  <input type="hidden" id="admin" value="<%= req.user.admin %>"></input>
+</div>
+
+  <div class="infomsg">企業マスタ</div>
+  <button id="btn_company_add"><span class="glyphicon glyphicon-plus-sign"></span></button>
+  
+  <table class="table table-bordered" id="msys_management_table_company" style="width:30%;">
+    <tr class="TBL_BLUE">
+      <td><br></td>
+      <th nowrap>企業名</th>
+      <th nowrap>ID</th>
+    </tr>
+    <tr id="company_template" style="display: none">
+      <td>
+        <button class="btn_company_del"><span class="glyphicon glyphicon-remove-sign"></span></button>
+      </td>
+      <td>
+        <input type="text" class="companyName" size="20" maxlength="20" value=""/>
+        <input type="hidden" class="hiddenId" value=""/>
+      </td>
+      <td><span class="companyId">未登録</span></td>
+    </tr>
+  </table>
+  
+  <input type="button" value="登録" id="btn_company_save" class="BTN_BLUE"/>
+  
+  <div class="infomsg" style="margin-top:20px;">質問マスタ</div>
+  <select id="companySel">
+    <option value="">企業を選択</option>
+  </select>
+  <button id="btn_question_add"><span class="glyphicon glyphicon-plus-sign"></span></button>
+  <input type="hidden" id="version" value=""/>
+
+  <div id="all_master" class="inner">
+  <table class="table table-bordered" id="msys_management_table_question">
+    <tr class="TBL_BLUE">
+      <td rowspan="2"><br></td>
+      <th rowspan="2" nowrap>質問No</th>
+      <th rowspan="2" nowrap>質問内容</th>
+      <th rowspan="2" nowrap>必須</th>
+      <th rowspan="2" nowrap>数量<br>有無</th>
+      <th rowspan="2" nowrap>回答形式</th>
+      <th rowspan="2" nowrap>金額（単価）</th>
+      <th rowspan="2" nowrap>次No</th>
+      <!--<th rowspan="2" nowrap>未入力<br>金額</th>
+      <th rowspan="2" nowrap>未入力<br>次No</th>-->
+      <!--<th colspan="3" nowrap>選択肢１</th>-->
+      <!--<th colspan="3" nowrap>選択肢２</th>-->
+      <!--<th colspan="3" nowrap>選択肢３</th>-->
+      <!--<th colspan="3" nowrap>選択肢４</th>-->
+      <!--<th colspan="3" nowrap>選択肢５</th>-->
+      <th colspan="4" nowrap>選択肢</th>
+    </tr>
+    <tr class="TBL_BLUE">
+      <th colspan="2" nowrap>回答</th>
+      <th nowrap>金額</th>
+      <th nowrap>次No</th>
+      <!--<th nowrap>回答</th>-->
+      <!--<th nowrap>金額</th>-->
+      <!--<th nowrap>次No</th>-->
+      <!--<th nowrap>回答</th>-->
+      <!--<th nowrap>金額</th>-->
+      <!--<th nowrap>次No</th>-->
+      <!--<th nowrap>回答</th>-->
+      <!--<th nowrap>金額</th>-->
+      <!--<th nowrap>次No</th>-->
+      <!--<th nowrap>回答</th>-->
+      <!--<th nowrap>金額</th>-->
+      <!--<th nowrap>次No</th>-->
+    </tr>
+    <tr id="question_template" style="display: none">
+      <td class="noborder">
+        <button class="btn_question_del"><span class="glyphicon glyphicon-remove-sign"></span></button>
+      </td>
+      <td>
+        <input type="text" class="questionNo num" size="3" maxlength="3" value=""/>
+        <input type="hidden" class="questionId" value=""/>
+      </td>
+      <td>
+        <input type="text" class="question" size="50" maxlength="300" value=""/>
+      </td>
+      <td>
+        <input type="checkbox" class="questionReq checkbox" value="1"/>
+      </td>
+      <td>
+        <input type="checkbox" class="questionQua checkbox" value="1"/>
+      </td>
+      <td>
+        <select class="questionSel">
+          <option value="1">漢字</option>
+          <option value="2">数値</option>
+          <option value="3">日付</option>
+          <option value="4">チェックボックス</option>
+          <option value="5">ラジオボタン</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" class="questionMoney num" size="8" maxlength="8" value="0"/>
+      </td>
+      <td>
+        <input type="text" class="questionNextNo num" size="3" maxlength="3" value=""/>
+      </td>
+      <!--<td>
+        <input type="text" class="questionMoneyn num" size="8" maxlength="8" value="0"/>
+      </td>
+      <td>
+        <input type="text" class="questionNextNon num" size="3" maxlength="3" value=""/>
+      </td>-->
+      <td>
+        <div>1：</div>
+        <div style="margin-top:18px;">2：</div>
+        <div style="margin-top:18px;">3：</div>
+        <div style="margin-top:18px;">4：</div>
+        <div style="margin-top:18px;">5：</div>
+      </td>
+      <td>
+        <input type="text" class="questionAnswer1 TBL_SILVER" size="40" maxlength="300" value="" readOnly/><br>
+        <input type="text" class="questionAnswer2 TBL_SILVER" size="40" maxlength="300" value="" readOnly style="margin-top:8px;"/><br>
+        <input type="text" class="questionAnswer3 TBL_SILVER" size="40" maxlength="300" value="" readOnly style="margin-top:8px;"/><br>
+        <input type="text" class="questionAnswer4 TBL_SILVER" size="40" maxlength="300" value="" readOnly style="margin-top:8px;"/><br>
+        <input type="text" class="questionAnswer5 TBL_SILVER" size="40" maxlength="300" value="" readOnly style="margin-top:8px;"/>
+      </td>
+      <td>
+        <input type="text" class="questionMoney1 num TBL_SILVER" size="8" maxlength="8" value="0" readOnly/><br>
+        <input type="text" class="questionMoney2 num TBL_SILVER" size="8" maxlength="8" value="0" readOnly style="margin-top:8px;"/><br>
+        <input type="text" class="questionMoney3 num TBL_SILVER" size="8" maxlength="8" value="0" readOnly style="margin-top:8px;"/><br>
+        <input type="text" class="questionMoney4 num TBL_SILVER" size="8" maxlength="8" value="0" readOnly style="margin-top:8px;"/><br>
+        <input type="text" class="questionMoney5 num TBL_SILVER" size="8" maxlength="8" value="0" readOnly style="margin-top:8px;"/>
+      </td>
+      <td>
+        <input type="text" class="questionNextNo1 num TBL_SILVER" size="3" maxlength="3" value="" readOnly/><br>
+        <input type="text" class="questionNextNo2 num TBL_SILVER" size="3" maxlength="3" value="" readOnly style="margin-top:8px;"/><br>
+        <input type="text" class="questionNextNo3 num TBL_SILVER" size="3" maxlength="3" value="" readOnly style="margin-top:8px;"/><br>
+        <input type="text" class="questionNextNo4 num TBL_SILVER" size="3" maxlength="3" value="" readOnly style="margin-top:8px;"/><br>
+        <input type="text" class="questionNextNo5 num TBL_SILVER" size="3" maxlength="3" value="" readOnly style="margin-top:8px;"/>
+      </td>
+      <!--<td>-->
+      <!--  <input type="text" class="questionAnswer2 TBL_SILVER" size="40" maxlength="300" value="" readOnly/>-->
+      <!--</td>-->
+      <!--<td>-->
+      <!--  <input type="text" class="questionMoney2 num TBL_SILVER" size="8" maxlength="8" value="0" readOnly/>-->
+      <!--</td>-->
+      <!--<td>-->
+      <!--  <input type="text" class="questionNextNo2 num TBL_SILVER" size="3" maxlength="3" value="" readOnly/>-->
+      <!--</td>-->
+      <!--<td>-->
+      <!--  <input type="text" class="questionAnswer3 TBL_SILVER" size="40" maxlength="300" value="" readOnly/>-->
+      <!--</td>-->
+      <!--<td>-->
+      <!--  <input type="text" class="questionMoney3 num TBL_SILVER" size="8" maxlength="8" value="0" readOnly/>-->
+      <!--</td>-->
+      <!--<td>-->
+      <!--  <input type="text" class="questionNextNo3 num TBL_SILVER" size="3" maxlength="3" value="" readOnly/>-->
+      <!--</td>-->
+      <!--<td>-->
+      <!--  <input type="text" class="questionAnswer4 TBL_SILVER" size="40" maxlength="300" value="" readOnly/>-->
+      <!--</td>-->
+      <!--<td>-->
+      <!--  <input type="text" class="questionMoney4 num TBL_SILVER" size="8" maxlength="8" value="0" readOnly/>-->
+      <!--</td>-->
+      <!--<td>-->
+      <!--  <input type="text" class="questionNextNo4 num TBL_SILVER" size="3" maxlength="3" value="" readOnly/>-->
+      <!--</td>-->
+      <!--<td>-->
+      <!--  <input type="text" class="questionAnswer5 TBL_SILVER" size="40" maxlength="300" value="" readOnly/>-->
+      <!--</td>-->
+      <!--<td>-->
+      <!--  <input type="text" class="questionMoney5 num TBL_SILVER" size="8" maxlength="8" value="0" readOnly/>-->
+      <!--</td>-->
+      <!--<td>-->
+      <!--  <input type="text" class="questionNextNo5 num TBL_SILVER" size="3" maxlength="3" value="" readOnly/>-->
+      <!--</td>-->
+    </tr>
+  </table>
+  
+  <input type="button" value="登録" id="btn_question_save" class="BTN_BLUE"/>
+  
+  </div>
+
+  
+<script>
+  $(function(){
+    if($('#admin').val() != '1'){
+      location.href = "/msys/main";
+    } else {
+      if(!_top_msys_master_load){
+        _top_msys_master_load=true;
+        ms.master.initMaster();
+      }
+    }
+  });
+</script>

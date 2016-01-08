@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"ksys.mcompany"},{"v":1,"unique":true,"key":{"companyId":1},"name":"companyId_1","ns":"ksys.mcompany","sparse":true}]}

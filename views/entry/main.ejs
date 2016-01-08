@@ -1,0 +1,121 @@
+<div class="shop-information">
+  <div style="float:left;">
+    <div style="font-size:16px;font-weight:bold;color:#FFFFFF;">自動試算システム　ユーザー登録　<span id="companyName" style="color:black;"/></div>
+    <div style="font-size:12px;color:#FFFFFF;margin-top:-3px;" id="current-local-time"></div>
+  </div>
+</div>
+<div id="entryform" style="display: ">
+  <div class="belt-space" style="background-color:#00ccff;margin-top:5px;">
+  	<div class="belt" style="background-color:#009bff;">
+  		基本情報
+  	</div>
+  	<div class="sankaku" style="border-left-color:#009bff;">
+  	</div>
+  </div>
+  
+  <div style="clear:both;"></div>
+  
+  <div class="information-container padding-set" style="background-color:#C2F2FF;">
+    <div class="errmsg">※赤字のタイトル部は必須入力です。</div>
+    <div class="information-tag2">
+  		<span class="errmsg">パスワード</span>
+  	</div>
+  	<input id="master-user-password" class="information-input2 tag-margin" type="password" maxlength="20"/>
+  	<input type="hidden" id="master-user-id" value=""></input>
+  	
+  	<div class="information-tag2">
+  		<span class="errmsg">（入力確認）</span>
+  	</div>
+  	<input id="master-user-password-se" class="information-input2 tag-margin" type="password" maxlength="20"/>
+    		
+  	<div class="information-tag2">
+  		<span class="errmsg">お名前</span>
+  	</div>
+  	<input id="master-user-name" class="information-input3 tag-margin" type="text"/>
+  	
+  	<div class="information-tag2">
+  		<span>オフィス〒</span>
+  	</div>
+  	<input id="postcode" class="information-input3 tag-margin" type="text"/>
+  	<div style="clear:both;"></div>
+  	<div class="errmsg">※郵便番号を入力することで住所が表示されます。</div>
+  	
+  	<div class="information-tag2">
+  		都道府県
+  	</div>
+  	<input id="address1" class="information-input3 tag-margin" type="text" readOnly/>
+  	
+  	<div class="information-tag2">
+  		市区町村
+  	</div>
+  	<input id="address2" class="information-input3 tag-margin" type="text" readOnly/>
+  	
+  	<div class="information-tag2">
+  		町名
+  	</div>
+  	<input id="address3" class="information-input3 tag-margin" type="text" readOnly/>
+  	
+  	<div class="information-tag2">
+  		<span>番地など</span>
+  	</div>
+  	<input id="address4" class="information-input3 tag-margin" type="text"/>
+  	
+  	<div class="information-tag2">
+  		電話番号
+  	</div>
+  	<input id="master-user-tel" class="information-input2 tag-margin" type="text" size="14" maxlength="14"/>
+  	
+  	<div style="clear:both;"></div>
+  	
+  	<div class="information-tag2">
+  		<span class="errmsg">メールアドレス</span>
+  	</div>
+  	<input id="master-user-mail" class="information-input3 tag-margin" type="text"/>
+  	
+  	<div class="information-tag2">
+  		<span class="errmsg">（入力確認）</span>
+  	</div>
+  	<input id="master-user-mail-se" class="information-input3 tag-margin" type="text"/>
+  	
+  	<div class="information-tag2">
+  		<span class="errmsg">認証用年月日</span>
+  	</div>
+  	<input id="master-user-date" class="information-input2 tag-margin" type="text" size="8" maxlength="8"/>
+  	<div style="clear:both;"></div>
+  	<div class="errmsg">※パスワードの問い合わせ認証用に使用します。数字8桁で入力してください。</div>
+  
+  	<div style="clear:both;"></div>
+  	
+  	<input type="button" value="登 録" id="sign-up-button">
+  	
+  </div>
+<!-- 基本情報 End ======================-->
+</div>
+
+<div id="successform" class="divcenter" style="display: none">
+  <h4>正常に登録されました。</h4>
+  <!--<h3>あなたのログインIDは<br><span id="loginno" class="nos"></span><br>です。</h3>-->
+  <h4>ログイン画面よりログインして当システムをご利用ください。</h4>
+  <br>
+  <input type="button" value="ログイン画面へ" id="master-user-move" class="TBL_BLUE"/>
+</div>
+<script>
+  $(function(){
+    
+    $('#postcode').jpostal({
+      postcode : [
+        '#postcode'
+      ],
+      address : {
+        '#address1'  : '%3',
+        '#address2'  : '%4',
+        '#address3'  : '%5'
+      }
+    });
+    
+    if(!_top_msys_entry_load){
+      _top_msys_entry_load=true;
+      ms.entry.initEntry();
+    }
+  });
+</script>
