@@ -1,2 +1,2 @@
-# floormng
-### a Sails application
+# msys
+### a Sails application for mitsumori.
