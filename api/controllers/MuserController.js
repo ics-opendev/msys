@@ -15,8 +15,8 @@ var smtpTransport = nodemailer.createTransport("SMTP", {
     tls: { rejectUnauthorized: false },
     port: '587',
     auth: {
-        user: 'naraban@icsoft.co.jp',
-        pass: 'Volo9530'
+        user: 'Taskalquery@icsoft.co.jp',
+        pass: '1183Icsoftincaa'
     }
     
     // Webサービスを使う場合
@@ -35,13 +35,13 @@ module.exports = {
         // TODO:ローカルでテストする場合は上のURLを使用すること
         //var _url = 'https://nsys2-icmurase.c9.io/login';
         var _url = 'https://msys.herokuapp.com/login';
-        var _text = '自動試算システム　ユーザー登録が完了いたしました。\n以下のURLからログインしてください。\n' + _url;
+        var _text = 'Taskalアンケート　ユーザー登録が完了いたしました。\n以下のURLからログインしてください。\n' + _url;
         var _mail = req.param('mail');
         var mailOptions = {
             //from: "自動試算システム <narabannaa@gmail.com>", // sender address
-            from: "自動試算システム <naraban@icsoft.co.jp>", // sender address
+            from: "Taskalアンケート <Taskalquery@icsoft.co.jp>", // sender address
             to: _mail, // list of receivers
-            subject: "自動試算システム　ユーザー登録のお知らせ", // Subject line
+            subject: "Taskalアンケート　ユーザー登録のお知らせ", // Subject line
             text: _text // plaintext body
         };
 	    
@@ -66,7 +66,7 @@ module.exports = {
         var _title = req.param('title');
         var mailOptions = {
             //from: "自動試算システム <narabannaa@gmail.com>", // sender address
-            from: "自動試算システム <naraban@icsoft.co.jp>", // sender address
+            from: "Taskalアンケート <Taskalquery@icsoft.co.jp>", // sender address
             to: _mail, // list of receivers
             subject: _title, // Subject line
             text: _text // plaintext body
