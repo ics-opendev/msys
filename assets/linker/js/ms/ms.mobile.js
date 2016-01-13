@@ -558,6 +558,10 @@
   
   // 案件回答一覧画面表示
   _wt.openDetailForm = function(_c){
+    // メール送信用
+    var _title = _c.projectName;
+    var _mail = '';
+    
     // 初期化
     $('#xform').css('display', 'none');
     $('#yform').css('display', 'none');
@@ -579,6 +583,7 @@
       }
       
       $('#detail_price').text('￥' + _wt.addFigure(_c.totalPrice));
+      _mail = '試算総額：' + '￥' + _wt.addFigure(_c.totalPrice) + '\n\n';
       
       var cnt = 1;
       for(var c in res){
@@ -587,58 +592,75 @@
         $('#msys_customer_table_detail tr:last').css('display', '');
         $('.detail_questionNo').eq(cnt).text(cnt);
         $('.detail_question').eq(cnt).text(res[c].question);
+        
+        _mail = _mail + '質問No' + cnt + '：' + res[c].question + '\n';
+        
         // TODO:リリース時に小計は削除すること！
-        $('.detail_subTotal').eq(cnt).text(res[c].subTotal);
+        // $('.detail_subTotal').eq(cnt).text(res[c].subTotal);
         if(res[c].questionSel == '4'){
           var _answer = '';
           var _quantity = '';
+          var _answer_mail = '';
           if(res[c].answer1 != ''){
             _answer = res[c].answer1;
             _quantity = res[c].quantity1;
+            _answer_mail = '・' + res[c].answer1 + '\n個数：' + res[c].quantity1;
           }
           if(res[c].answer2 != ''){
             if(_answer != ''){
               _answer = _answer + '<br>' + res[c].answer2;
               _quantity = _quantity + '<br>' + res[c].quantity2;
+              _answer_mail = _answer_mail + '\n・' + res[c].answer2 + '\n個数：' + res[c].quantity2;
             } else {
               _answer = res[c].answer2;
               _quantity = res[c].quantity2;
+              _answer_mail = '・' + res[c].answer2 + '\n個数：' + res[c].quantity2;
             }
           }
           if(res[c].answer3 != ''){
             if(_answer != ''){
               _answer = _answer + '<br>' + res[c].answer3;
               _quantity = _quantity + '<br>' + res[c].quantity3;
+              _answer_mail = _answer_mail + '\n・' + res[c].answer3 + '\n個数：' + res[c].quantity3;
             } else {
               _answer = res[c].answer3;
               _quantity = res[c].quantity3;
+              _answer_mail = '・' + res[c].answer3 + '\n個数：' + res[c].quantity3;
             }
           }
           if(res[c].answer4 != ''){
             if(_answer != ''){
               _answer = _answer + '<br>' + res[c].answer4;
               _quantity = _quantity + '<br>' + res[c].quantity4;
+              _answer_mail = _answer_mail + '\n・' + res[c].answer4 + '\n個数：' + res[c].quantity4;
             } else {
               _answer = res[c].answer4;
               _quantity = res[c].quantity4;
+              _answer_mail = '・' + res[c].answer4 + '\n個数：' + res[c].quantity4;
             }
           }
           if(res[c].answer5 != ''){
             if(_answer != ''){
               _answer = _answer + '<br>' + res[c].answer5;
               _quantity = _quantity + '<br>' + res[c].quantity5;
+              _answer_mail = _answer_mail + '\n・' + res[c].answer5 + '\n個数：' + res[c].quantity5;
             } else {
               _answer = res[c].answer5;
               _quantity = res[c].quantity5;
+              _answer_mail = '・' + res[c].answer5 + '\n個数：' + res[c].quantity5;
             }
           }
           
           $('.detail_answer').eq(cnt).html(_answer);
           $('.detail_quantity').eq(cnt).html(_quantity);
           
+          _mail = _mail + '回答：\n' + _answer_mail + '\n\n';
+          
         } else {
           $('.detail_answer').eq(cnt).text(res[c].answer1);
           $('.detail_quantity').eq(cnt).text(res[c].quantity1);
+          
+          _mail = _mail + '回答：' + res[c].answer1 + '\n' + '個数：' + res[c].quantity1 + '\n\n';
         }
         
         cnt++;
@@ -658,24 +680,42 @@
       $('#btn_request').bind('click',function(e){
         var _msg = 'アイシーソフトに見積依頼を行います。よろしいですか？';
         var _request = '1';
+        var _title_req = _title;
+        
         if(this.value == '見積依頼取消'){
           _msg = '見積依頼を取り消します。よろしいですか？';
+          _title_req = '【取消】' + _title_req;
           _request = '';
         }
+        
         if(!confirm(_msg)){
           return false;
         }
-        _wt.changeRequest(_c.id,_request);
+        _wt.changeRequest(_c.id,_request,_title_req,_mail);
       });
       
       // 案件削除ボタン
       $('#btn_delete').unbind();
       $('#btn_delete').bind('click',function(e){
+        if(_c.request == '1'){
+          alert('見積依頼取消を行ってから削除してください。');
+          return false;
+        }
         if(!confirm("この案件を削除します。よろしいですか？")){
           return false;
         }
         
         _wt.deleteMproject(_c);
+      });
+      
+      // メール送信ボタン
+      $('#btn_mail').unbind();
+      $('#btn_mail').bind('click',function(e){
+        if(!confirm("自分のメールアドレスにこの案件の内容を送信します。よろしいですか？")){
+          return false;
+        }
+        
+        _wt.sendMailProject(_title,_mail);
       });
       
       // 案件詳細画面・戻るボタン
