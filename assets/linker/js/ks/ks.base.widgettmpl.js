@@ -952,7 +952,7 @@
               
               // メール送信
               io.socket.get('/Muser/sendMailToUser', {
-                address: 'eigyo@icsoft.co.jp',
+                address: 'k.murase@icsoft.co.jp',
                 title: _title,
                 mail: _mail_req
               }, function(data) {
