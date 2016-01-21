@@ -615,61 +615,61 @@
         if(res[c].questionSel == '4'){
           var _answer = '';
           var _quantity = '';
-          var _quantity_m = '';
+          var _answer_mail = '';
           if(res[c].answer1 != ''){
             _answer = '・' + res[c].answer1;
             _quantity = res[c].quantity1;
-            _quantity_m = res[c].quantity1;
+            _answer_mail = '・' + res[c].answer1 + '\n個数：' + res[c].quantity1;
           }
           if(res[c].answer2 != ''){
             if(_answer != ''){
               _answer = _answer + '<br>・' + res[c].answer2;
               _quantity = _quantity + '<br>' + res[c].quantity2;
-              _quantity_m = _quantity_m + ',' + res[c].quantity2;
+              _answer_mail = _answer_mail + '\n・' + res[c].answer2 + '\n個数：' + res[c].quantity2;
             } else {
               _answer = '・' + res[c].answer2;
               _quantity = res[c].quantity2;
-              _quantity_m = res[c].quantity2;
+              _answer_mail = '・' + res[c].answer2 + '\n個数：' + res[c].quantity2;
             }
           }
           if(res[c].answer3 != ''){
             if(_answer != ''){
               _answer = _answer + '<br>・' + res[c].answer3;
               _quantity = _quantity + '<br>' + res[c].quantity3;
-              _quantity_m = _quantity_m + ',' + res[c].quantity3;
+              _answer_mail = _answer_mail + '\n・' + res[c].answer3 + '\n個数：' + res[c].quantity3;
             } else {
               _answer = '・' + res[c].answer3;
               _quantity = res[c].quantity3;
-              _quantity_m = res[c].quantity3;
+              _answer_mail = '・' + res[c].answer3 + '\n個数：' + res[c].quantity3;
             }
           }
           if(res[c].answer4 != ''){
             if(_answer != ''){
               _answer = _answer + '<br>・' + res[c].answer4;
               _quantity = _quantity + '<br>' + res[c].quantity4;
-              _quantity_m = _quantity_m + ',' + res[c].quantity4;
+              _answer_mail = _answer_mail + '\n・' + res[c].answer4 + '\n個数：' + res[c].quantity4;
             } else {
               _answer = '・' + res[c].answer4;
               _quantity = res[c].quantity4;
-              _quantity_m = res[c].quantity4;
+              _answer_mail = '・' + res[c].answer4 + '\n個数：' + res[c].quantity4;
             }
           }
           if(res[c].answer5 != ''){
             if(_answer != ''){
               _answer = _answer + '<br>・' + res[c].answer5;
               _quantity = _quantity + '<br>' + res[c].quantity5;
-              _quantity_m = _quantity_m + ',' + res[c].quantity5;
+              _answer_mail = _answer_mail + '\n・' + res[c].answer5 + '\n個数：' + res[c].quantity5;
             } else {
               _answer = '・' + res[c].answer5;
               _quantity = res[c].quantity5;
-              _quantity_m = res[c].quantity5;
+              _answer_mail = '・' + res[c].answer5 + '\n個数：' + res[c].quantity5;
             }
           }
           
           $('.detail_answer').eq(cnt).html(_answer);
           $('.detail_quantity').eq(cnt).html(_quantity);
           
-          _mail = _mail + '回答：\n' + _answer.split("<br>").join("\n") + '\n' + '個数：' + _quantity_m + '\n\n';
+          _mail = _mail + '回答：\n' + _answer_mail + '\n\n';
           
         } else {
           $('.detail_answer').eq(cnt).text(res[c].answer1);
@@ -695,14 +695,18 @@
       $('#btn_request').bind('click',function(e){
         var _msg = 'アイシーソフトに見積依頼を行います。よろしいですか？';
         var _request = '1';
+        var _title_req = _title;
+        
         if(this.value == '見積依頼取消'){
           _msg = '見積依頼を取り消します。よろしいですか？';
+          _title_req = '【取消】' + _title_req;
           _request = '';
         }
+        
         if(!confirm(_msg)){
           return false;
         }
-        _wt.changeRequest(_c.id,_request,_title,_mail);
+        _wt.changeRequest(_c.id,_request,_title_req,_mail);
       });
       
       // 案件削除ボタン

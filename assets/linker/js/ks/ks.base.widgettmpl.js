@@ -944,27 +944,35 @@
       },function(upd,JWR){
         console.log(upd,JWR);
         
-        // if(_request == '1'){
-        //   // メール送信
-        //   io.socket.get('/Muser/sendMailToUser', {
-        //     address: 'eigyo@icsoft.co.jp',
-        //     title: _title,
-        //     mail: _mail
-        //   }, function(data) {
-        //     console.log(data.user.message);
-        //   });
-        // }
-        
-        $('#xform').css('display', '');
-        $('#yform').css('display', 'none');
-        $('#zform').css('display', '');
-        $('#detailform').css('display', 'none');
-        
-        if($("#mobile").val() != ''){
-          ms.mobile.initMobile();
-        } else {
-          ms.customer.initCustomer();
-        }
+        // prototypeからメールアドレス検索
+        _proto.findMuser(function(user){
+          if(user[0] != undefined){
+            _proto.findMcompanytoId(user[0].companyId,function(com){
+              var _mail_req = '会社名：' + com[0].companyName + '\n依頼者名：' + user[0].name + '\nメールアドレス：' + user[0].mail + '\n\n' + _mail;
+              
+              // メール送信
+              io.socket.get('/Muser/sendMailToUser', {
+                address: 'eigyo@icsoft.co.jp',
+                title: _title,
+                mail: _mail_req
+              }, function(data) {
+                console.log(data.user.message);
+              });
+            });
+            
+          }
+          
+          $('#xform').css('display', '');
+          $('#yform').css('display', 'none');
+          $('#zform').css('display', '');
+          $('#detailform').css('display', 'none');
+          
+          if($("#mobile").val() != ''){
+            ms.mobile.initMobile();
+          } else {
+            ms.customer.initCustomer();
+          }
+        });
       });
     };
     
