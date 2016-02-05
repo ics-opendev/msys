@@ -28,7 +28,7 @@ module.exports = {
     
     mongo: {
       module: 'sails-mongo',
-      database: 'ksys',
+      database: 'heroku_fllrlkm2',
       host: process.env.IP,
       port: 27017,
       schema: true
